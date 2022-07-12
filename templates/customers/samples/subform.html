@@ -1,0 +1,35 @@
+{% if filter_choice %}
+    {% include 'customers/samples/list_filter.html' %}
+{% endif %}
+
+<table id="samples_list{{ subform_settings }}" class="hover nowrap row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>продукт</th>
+            <th>клиент</th>
+            <th>проект</th>
+            <th>дата заказа</th>
+            <th>статус</th>
+            <th>дата статуса</th>
+            <th>значимый</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sample in samples %}
+            <tr>
+                <td>
+                    <a href="{% url 'samples:view' sample.id %}"><i class="bi bi-eye"></i></a>&nbsp;
+                    <a href="{% url 'samples:update' sample.id %}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td><a href="{% url 'products:view' sample.product.id %}">{{ sample.product }}</a></td>
+                <td><a href="{% url 'customers:view' sample.customer.id %}">{{ sample.customer }}</a></td>
+                <td>{% if sample.project %}<a href="{% url 'projects:view' sample.project.id %}">{{ sample.project }}</a>{% endif %}</td>
+                <td>{{ sample.created|date:'d.m.y' }}</td>
+                <td>{{ sample.get_status_display }}</td>
+                <td>{{ sample.status_date|date:'d.m.y' }}</td>
+                <td>{% if sample.important %}<i class="bi bi-star-fill text-warning"></i>{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

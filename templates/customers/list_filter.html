@@ -1,0 +1,46 @@
+<div class="collapse container" id="collapseFilter">
+    <div class="card-body mb-2 bg-light">
+        <form method="GET" action="" class="form">
+        <div class="row mb-3">
+             {% if filter_choice.organisation_customer != None %}
+                <div class="col-sm-4">
+                    <label for="organisation_customer" class="mr-3">организация:</label>
+                    <select id="organisation_customer" name="organisation_customer" class="custom-select">
+                        <option value=""></option>
+                        {% for org in dropdown.organisations %}
+                            <option value={{ org.id }} {% if org.id == filter_choice.organisation_customer %} selected {% endif %}>{{ org }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.user_customer != None %}
+                <div class="col-sm-2">
+                    <label for="user_customer" class="mr-3">ответственный:</label>
+                    <select id="user_customer" name="user_customer" class="custom-select">
+                        <option value=""></option>
+                        {% for user in dropdown.users %}
+                            <option value={{ user.id }} {% if user.id == filter_choice.user_customer %} selected {% endif %}>{{ user }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.priority != None %}
+                <div class="col-sm-2">
+                    <label for="priority" class="mr-3">приоритет:</label>
+                    <select id="priority" name="priority" class="custom-select">
+                        <option value=""></option>
+                        {% for k, v in dropdown.yes_no.items %}
+                            <option value={{ k }} {% if k == filter_choice.priority %} selected {% endif %}>{{ v }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary float-right">фильтр</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

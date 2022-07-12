@@ -1,0 +1,11 @@
+<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+  Я ИСПОЛНИТЕЛЬ
+</h6>
+<a class="dropdown-item" href="{% url 'tasks:list' %}">актуальные</a>
+<a class="dropdown-item" href="{% url 'tasks:for-today' %}">на сегодня</a>
+<a class="dropdown-item" href="{% url 'tasks:expired' %}">просроченные</a>
+
+<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+  Я ПОСТАНОВЩИК
+</h6>
+<a class="dropdown-item" href="{% url 'tasks:i-creator' %}">актуальные</a>

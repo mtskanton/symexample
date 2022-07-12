@@ -1,0 +1,33 @@
+{% if filter_choice %}
+    {% include 'tasks/list_filter.html' %}
+{% endif %}
+
+<table id="tasks_list{{ subform_settings }}" class="hover nowrap row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>создание</th>
+            <th>напоминание</th>
+            <th>описание</th>
+            <th>результат</th>
+            <th>клиент</th>
+            <th>выполнено</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>
+                    <a href="{% url 'tasks:view' task.id %}"><i class="bi bi-eye"></i></a>&nbsp;
+                    <a href="{% url 'tasks:update' task.id %}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td>{{ task.created|date:"d.m.y" }}</td>
+                <td>{{ task.reminder|date:"d.m.y" }}</td>
+                <td>{{ task }}</td>
+                <td>{{ task.result_short|default_if_none:'' }}</td>
+                <td>{% if task.customer %}<a href="{% url 'customers:view' task.customer.id %}">{{ task.customer }}</a>{% endif %}</td>
+                <td>{% if task.done %}<i class="bi bi-check2-circle text-success"></i>{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

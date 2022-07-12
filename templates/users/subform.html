@@ -1,0 +1,22 @@
+<table id="users_list" class="hover nowrap row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>имя</th>
+            <th>организация</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for user in users %}
+        <tr>
+            <td>
+                <a href="{% url 'users:update' user.id %}"><i class="bi bi-pencil-square"></i></a>
+            </td>
+            <td>{{ user }}</td>
+            <td>{{ user.organisation }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

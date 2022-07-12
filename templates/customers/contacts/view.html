@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {{ contact }}
+    <a href="{% url 'contacts:update' contact.id %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-pencil-square"></i></a>
+{% endblock page_header %}
+
+{% block content %}
+
+    <dl>
+        <div class="row">
+            <dt class="col-sm-2">компания</dt>
+            <dd class="col-sm-10"><a href="{% url 'customers:view' contact.customer.id %}">{{ contact.customer }}</a></dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">отдел</dt>
+            <dd class="col-sm-10">{{ contact.get_department_display|default_if_none:'' }}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">должность</dt>
+            <dd class="col-sm-10">{{ contact.position|default_if_none:'' }}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">телефон</dt>
+            <dd class="col-sm-10">{{ contact.phone|default_if_none:'' }} {{ contact.phone_2|default_if_none:'' }}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">почта</dt>
+            <dd class="col-sm-10"><a href="mailto:{{ contact.email }}">{{ contact.email|default_if_none:'' }}</a> <a href="mailto:{{ contact.email_2 }}">{{ contact.email_2|default_if_none:'' }}</a></dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">актуальный</dt>
+            <dd class="col-sm-10">{% if contact.actual %}<i class="bi bi-check-lg text-success"></i>{% endif %}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">рассылка</dt>
+            <dd class="col-sm-10">{% if contact.emailing %}<i class="bi bi-check-lg text-success"></i>{% endif %}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">комментарий</dt>
+            <dd class="col-sm-10">{{ customer.comment }}</dd>
+        </div>
+    </dl>
+
+{% endblock %}

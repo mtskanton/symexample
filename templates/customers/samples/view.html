@@ -1,0 +1,73 @@
+{% extends 'layout-fluid.html' %}
+
+{% block sidebar %}
+    {% include "customers/samples/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block page_header %}
+    {% if sample.important %}
+        <i class="bi bi-star-fill text-warning"></i>
+    {% endif %}
+    {{ sample.product }}
+    <a href="{% url 'products:view' sample.product.id %}" target="_blank"><i class="bi bi-box-arrow-in-up-right"></i></a>
+
+    <a href="{% url 'samples:update' sample.id %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-pencil-square"></i></a>
+    <a href="{% url 'samples:delete' sample.id %}" class="btn btn-danger mr-1" style="display: block; float: right"><i class="bi bi-x-lg"></i></a>
+{% endblock page_header %}
+
+{% block content %}
+    <div class="ml-3">
+        <dl>
+            <div class="row">
+                <dt class="col-sm-2">статус</dt>
+                <dd class="col-sm-10">{{ sample.get_status_display }} {{ sample.status_date|date:'d.m.y' }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">компания</dt>
+                <dd class="col-sm-10"><a href="{% url 'customers:view' sample.customer.id %}">{{ sample.customer }}</a></dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">контакт</dt>
+                <dd class="col-sm-10">{% if sample.contact %}<a href="{% url 'contacts:view' sample.contact.id %}">{{ sample.contact }}</a>{% endif %}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">проект</dt>
+                <dd class="col-sm-10">{% if sample.project %}<a href="{% url 'projects:view' sample.project.id %}">{{ sample.project }}</a>{% endif %}</dd>
+            </div>
+            {% if sample.important %}
+                <div class="row">
+                    <dt class="col-sm-2">значимый</dt>
+                    <dd class="col-sm-10"><i class="bi bi-star-fill text-warning"> значимый</i></dd>
+                </div>
+            {% endif %}
+            <div class="row">
+                <dt class="col-sm-2">потенциал, кг/год</dt>
+                <dd class="col-sm-10">{{ sample.potential|default_if_none:'' }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">комментарий</dt>
+                <dd class="col-sm-10">{{ sample.comment|default_if_none:'' }}</dd>
+            </div>
+                <div class="row">
+                <dt class="col-sm-2">вес, гр</dt>
+                <dd class="col-sm-10">{{ sample.amount }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">дата заказа</dt>
+                <dd class="col-sm-10">{{ sample.created|date:'d.m.y' }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">дата отправки</dt>
+                <dd class="col-sm-10">{{ sample.sent|date:'d.m.y' }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">данные отправки</dt>
+                <dd class="col-sm-10">{{ sample.sent_data|default_if_none:'' }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">PACE</dt>
+                <dd class="col-sm-10">{{ sample.pace|default_if_none:'' }}</dd>
+            </div>
+        </dl>
+    </div>
+{% endblock %}

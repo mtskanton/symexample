@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {{ page_header }}
+{% endblock page_header %}
+
+{% block content %}
+    <form method="POST" action ="">
+        {% csrf_token %}
+        <div class="content">
+            <div class="row mb-2">
+                <div class="col-2">
+                    <label class="form-label" for="{{ form.number.id_for_label }}">{{ form.number.label.lower }}</label>{{ form.number }}
+                </div>
+                <div class="col-7">
+                    <label class="form-label" for="{{ form.title.id_for_label }}">{{ form.title.label.lower }}</label>{{ form.title }}
+                </div>
+                <div class="col-1">
+                    <label class="form-label" for="{{ form.actual.id_for_label }}">{{ form.actual.label.lower }}</label>{{ form.actual }}
+                </div>
+                <div class="col-2">
+                    <label class="form-label" for="{{ form.sanctioned.id_for_label }}">{{ form.sanctioned.label.lower }}</label>{{ form.sanctioned }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.inci.id_for_label }}">{{ form.inci.label.upper }}</label>{{ form.inci }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.category.id_for_label }}">{{ form.category.label.lower }}</label>{{ form.category }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.subcategory.id_for_label }}">{{ form.subcategory.label.lower }}</label>{{ form.subcategory }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.phn.id_for_label }}">{{ form.phn.label.lower }}</label>{{ form.phn }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.color.id_for_label }}">{{ form.color.label.lower }}</label>{{ form.color }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.form.id_for_label }}">{{ form.form.label.lower }}</label>{{ form.form }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.solubility.id_for_label }}">{{ form.solubility.label.lower }}</label>{{ form.solubility }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.dosage.id_for_label }}">{{ form.dosage.label.lower }}</label>{{ form.dosage }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.priority.id_for_label }}">{{ form.priority.label.lower }}</label>{{ form.priority }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.registration.id_for_label }}">{{ form.registration.label.lower }}</label>{{ form.registration }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.description.id_for_label }}">{{ form.description.label.lower }}</label>{{ form.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <label class="form-label" for="{{ form.properties.id_for_label }}">{{ form.properties.label.lower }}</label>{{ form.properties }}
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info float-right">сохранить</button>
+    </form>
+{% endblock content %}

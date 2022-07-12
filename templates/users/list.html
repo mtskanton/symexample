@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {{ page_header }}
+    <a href="{% url 'users:create' %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-plus-circle"></i></a>
+{% endblock page_header %}
+
+{% block content %}
+    {% include 'users/subform.html' %}
+{% endblock content %}

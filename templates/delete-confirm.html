@@ -1,0 +1,12 @@
+ {% extends 'layout.html' %}
+
+ {% block content %}
+
+     <form method="POST" action="">
+     {% csrf_token %}
+     <p>Вы уверены, что хотите удалить "{{ obj }} ?"</p>
+     <p><a href="{{ request.META.HTTP_REFERER }}">отменить</a></p>
+     <input type="submit" value="Confirm" />
+     </form>
+
+ {% endblock content %}

@@ -1,0 +1,29 @@
+{% if filter_choice %}
+    {% include 'customers/projects/list_filter.html' %}
+{% endif %}
+
+<table id="projects_list{{ subform_settings }}" class="hover nowrap row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>название</th>
+            <th>описание</th>
+            <th>клиент</th>
+            <th>архив</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>
+                    <a href="{% url 'projects:view' project.id %}"><i class="bi bi-eye"></i></a>&nbsp;
+                    <a href="{% url 'projects:update' project.id %}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td>{{ project }}</td>
+                <td>{{ project.description_short|default_if_none:'' }}</td>
+                <td><a href="{% url 'customers:view' project.customer.id %}">{{ project.customer }}</a></td>
+                <td>{% if project.archive %}<i class="bi bi-file-earmark-zip text-secondary"></i>{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

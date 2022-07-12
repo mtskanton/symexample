@@ -1,0 +1,90 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {% if customer.priority %}
+        <i class="bi bi-bookmark-star-fill text-warning"></i>
+    {% endif %}
+    {{ customer }}
+    <a href="{% url 'customers:update' customer.id %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-pencil-square"></i></a>
+{% endblock page_header %}
+
+{% block content %}
+
+    <dl>
+        <div class="row">
+            <dt class="col-sm-2">адрес</dt>
+            <dd class="col-sm-10">{{ customer.get_country_display|default_if_none:'' }} {{ customer.address|default_if_none:'' }}</dd>
+        </div>
+        {% if customer.address_2 %}
+            <div class="row">
+                <dt class="col-sm-2">адрес 2</dt>
+                <dd class="col-sm-10">{{ customer.address_2|default_if_none:'' }}</dd>
+            </div>
+        {% endif %}
+        <div class="row">
+            <dt class="col-sm-2">сайт</dt>
+            <dd class="col-sm-10">{{ customer.website|default_if_none:'' }} {% if customer.website %}<a href="http://{{ customer.website }}" target="_blank"><i class="bi bi-box-arrow-in-up-right"></i></a>{% endif %}</dd>
+        </div>
+        {% if customer.SAP and perms.customers.manage_customer %}
+            <div class="row">
+                <dt class="col-sm-2">SAP</dt>
+                <dd class="col-sm-10">{{ customer.SAP|default_if_none:'' }}</dd>
+            </div>
+        {% endif %}
+        <div class="row">
+            <dt class="col-sm-2">ответственный</dt>
+            <dd class="col-sm-10">{{ customer.responsible }}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">комментарий</dt>
+            <dd class="col-sm-10">{{ customer.comment|default_if_none:'' }}</dd>
+        </div>
+    </dl>
+
+    <br>
+
+    <a href="{% url 'samples:create' %}?customer={{ customer.id }}" class="btn btn-outline-secondary mb-1" style="display: block; float: right" title="добавить образец"><i class="bi bi-node-plus"></i></a>
+    <a href="{% url 'projects:create' %}?customer={{ customer.id }}" class="btn btn-outline-secondary mr-1 mb-1" style="display: block; float: right" title="добавить проект"><i class="bi bi-calendar2-plus"></i></a>
+    <a href="{% url 'contacts:create' %}?customer={{ customer.id }}" class="btn btn-outline-secondary mr-1 mb-1" style="display: block; float: right" title="добавить контакт"><i class="bi bi-person-plus"></i></a>
+    <a href="{% url 'tasks:create' %}?customer={{ customer.id }}" class="btn btn-outline-secondary mr-1 mb-1" style="display: block; float: right" title="добавить задачу"><i class="bi bi-journal-plus"></i></a>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#tasks" role="tab" aria-controls="tasks" aria-selected="true">Задачи</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contacts-tab" data-toggle="tab" href="#contacts" role="tab" aria-controls="contacts" aria-selected="false">Контакты</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="projects-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="projects" aria-selected="false">Проекты</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="samples-tab" data-toggle="tab" href="#samples" role="tab" aria-controls="samples" aria-selected="false">Образцы</a>
+        </li>
+    </ul>
+
+    <!-- TabsContent -->
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
+            <br/>
+            {% include 'tasks/subform.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+            <br>
+            {% include 'customers/contacts/subform.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+            <br/>
+            {% include 'customers/projects/subform.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="samples" role="tabpanel" aria-labelledby="samples-tab">
+            <br/>
+            {% include 'customers/samples/subform.html' %}
+        </div>
+    </div>
+
+{% endblock content %}

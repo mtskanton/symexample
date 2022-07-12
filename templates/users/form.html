@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {{ page_header }}
+{% endblock page_header %}
+
+{% block content %}
+
+    <form method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <button type="submit" class="btn btn-info float-right">сохранить</button>
+    </form>
+{% endblock content %}
+

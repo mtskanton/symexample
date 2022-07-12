@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {{ page_header }}
+{% endblock page_header %}
+
+{% block content %}
+    <form method="POST" action ="">
+        {% csrf_token %}
+        <div class="content">
+            <div class="row mb-2">
+                <div class="col-3">
+                    <label class="form-label" for="{{ form.name.id_for_label }}">{{ form.name.label.lower }}</label>{{ form.name }}
+                </div>
+                <div class="col-3">
+                    <label class="form-label" for="{{ form.surname.id_for_label }}">{{ form.surname.label.lower }}</label>{{ form.surname }}
+                </div>
+                <div class="col-1">
+                    <label class="form-label" for="{{ form.actual.id_for_label }}">{{ form.actual.label.lower }}</label>{{ form.actual }}
+                </div>
+                <div class="col-1">
+                    <label class="form-label" for="{{ form.emailing.id_for_label }}">{{ form.emailing.label.lower }}</label>{{ form.emailing }}
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3">
+                    <label class="form-label" for="{{ form.customer.id_for_label }}">{{ form.customer.label.lower }}</label>
+                    {% if form.instance.customer %}
+                        <br>{{ form.instance.customer }}{{ form.customer.as_hidden }}
+                    {% else %}
+                        {{ form.customer }}
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    <label class="form-label" for="{{ form.department.id_for_label }}">{{ form.department.label.lower }}</label>{{ form.department }}
+                </div>
+                <div class="col-6">
+                    <label class="form-label" for="{{ form.position.id_for_label }}">{{ form.position.label.lower }}</label>{{ form.position }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <label class="form-label" for="{{ form.phone.id_for_label }}">{{ form.phone.label.lower }}</label>{{ form.phone }}
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="{{ form.phone_2.id_for_label }}">{{ form.phone_2.label.lower }}</label>{{ form.phone_2 }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <label class="form-label" for="{{ form.email.id_for_label }}">{{ form.email.label.lower }}</label>{{ form.email }}
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="{{ form.email_2.id_for_label }}">{{ form.email_2.label.lower }}</label>{{ form.email_2 }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.comment.id_for_label }}">{{ form.comment.label.lower }}</label>{{ form.comment }}
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+
+
+        <button type="submit" class="btn btn-info float-right">сохранить</button>
+    </form>
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {% if project.archive %}<i class="bi bi-file-earmark-zip text-secondary"></i>{% endif %}
+    {{ project.title }}
+    <a href="{% url 'projects:update' project.id %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-pencil-square"></i></a>
+    <a href="{% url 'projects:delete' project.id %}" class="btn btn-danger mr-1" style="display: block; float: right"><i class="bi bi-x-lg"></i></a>
+{% endblock page_header %}
+
+{% block content %}
+
+    <dl>
+        <div class="row">
+            <dt class="col-sm-2">описание</dt>
+            <dd class="col-sm-10">{{ project.description|default_if_none:'' }}</dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">клиент</dt>
+            <dd class="col-sm-10"><a href="{% url 'customers:view' project.customer.id %}">{{ project.customer }}</a></dd>
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">контакт</dt>
+            <dd class="col-sm-10">{% if project.contact %}<a href="{% url 'contacts:view' project.contact.id %}">{{ project.contact }}</a>{% endif %}</dd>
+        </div>
+        {% if project.archive %}
+            <div class="row">
+                <dt class="col-sm-2">архив</dt>
+                <dd class="col-sm-10"><i class="bi bi-file-earmark-zip text-secondary"> в архиве</i></dd>
+            </div>
+        {% endif %}
+    </dl>
+
+    <br>
+
+    <a href="{% url 'samples:create' %}?project={{ project.id }}" class="btn btn-outline-secondary mb-1" style="display: block; float: right" title="добавить образец"><i class="bi bi-node-plus"></i></a>
+    <a href="{% url 'tasks:create' %}?project={{ project.id }}" class="btn btn-outline-secondary mr-1 mb-1" style="display: block; float: right" title="добавить задачу"><i class="bi bi-journal-plus"></i></a>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="tasks-tab" data-toggle="tab" href="#tasks" role="tab" aria-controls="home" aria-selected="true">Задачи</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="samples-tab" data-toggle="tab" href="#samples" role="tab" aria-controls="profile" aria-selected="false">Образцы</a>
+        </li>
+    </ul>
+
+    <!-- TabsContent -->
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="tasks" role="tabpanel" aria-labelledby="tasks-tab">
+            <br/>
+            {% include 'tasks/subform.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="samples" role="tabpanel" aria-labelledby="samples-tab">
+            <br/>
+            {% include 'customers/samples/subform.html' %}
+        </div>
+    </div>
+
+{% endblock %}

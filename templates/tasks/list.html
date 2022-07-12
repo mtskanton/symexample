@@ -1,0 +1,17 @@
+{% extends 'layout-fluid.html' %}
+
+{% block sidebar %}
+    {% include "tasks/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block page_header %}
+    {{ page_header }}
+    <a href="{% url 'tasks:create' %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-plus-circle"></i></a>
+    {% if filter_choice %}
+        <a href="#collapseFilter" class="btn btn-secondary mr-1" style="display: block; float: right" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseFilter"><i class="bi bi-filter"></i></a>
+    {% endif %}
+{% endblock page_header %}
+
+{% block content %}
+    {% include 'tasks/subform.html' %}
+{% endblock content %}

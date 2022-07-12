@@ -1,0 +1,71 @@
+<div class="collapse container" id="collapseFilter">
+    <div class="card-body mb-2 bg-light">
+        <form method="GET" action="" class="form">
+        <div class="row mb-3">
+            {% if filter_choice.organisation != None %}
+                <div class="col-sm-4">
+                    <label for="organisation" class="mr-3">организация:</label>
+                    <select id="organisation" name="organisation" class="custom-select">
+                        <option value=""></option>
+                        {% for org in dropdown.organisations %}
+                            <option value={{ org.id }} {% if org.id == filter_choice.organisation %} selected {% endif %}>{{ org }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.user != None %}
+                <div class="col-sm-2">
+                    <label for="user" class="mr-3">ответственный:</label>
+                    <select id="user" name="user" class="custom-select">
+                        <option value=""></option>
+                        {% for user in dropdown.users %}
+                            <option value={{ user.id }} {% if user.id == filter_choice.user %} selected {% endif %}>{{ user }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.important != None %}
+                <div class="col-sm-2">
+                    <label for="important" class="mr-3">значимый:</label>
+                    <select id="important" name="important" class="custom-select">
+                        <option value=""></option>
+                        {% for k, v in dropdown.yes_no.items %}
+                            <option value={{ k }} {% if k == filter_choice.important %} selected {% endif %}>{{ v }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row mb-3">
+             {% if filter_choice.status != None %}
+                <div class="col-sm-4">
+                    <label for="status" class="mr-3">статус:</label>
+                    <select id="status" name="status" class="custom-select">
+                        <option value=""></option>
+                        {% for k, v in dropdown_statuses %}
+                            <option value={{ k }} {% if k == filter_choice.status %} selected {% endif %}>{{ v }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.status_date_from != None %}
+                <div class="col-sm-2">
+                    <label for="status_date_from" class="mr-3">статус с:</label>
+                    <input id="status_date_from" name="status_date_from" type="date" value="{{ filter_choice.status_date_from }}" class="custom-select"/>
+                </div>
+            {% endif %}
+            {% if filter_choice.status_date_till != None %}
+                <div class="col-sm-2">
+                    <label for="status_date_till" class="mr-3">статус до:</label>
+                    <input id="status_date_till" name="status_date_till" type="date" value="{{ filter_choice.status_date_till }}" class="custom-select"/>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary float-right">фильтр</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

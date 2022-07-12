@@ -1,0 +1,21 @@
+<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+  Выбор
+</h6>
+<a class="dropdown-item" href="{% url 'samples:list' %}">все</a>
+<a class="dropdown-item" href="{% url 'samples:on-testing' %}">на тестировании</a>
+<a class="dropdown-item" href="{% url 'samples:abandoned' %}">заброшен</a>
+
+<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+  Отправки
+</h6>
+
+<a class="dropdown-item" href="{% url 'samples:send' %}">отправить</a>
+<a class="dropdown-item" href="{% url 'samples:send-directly' %}">отправить напрямую</a>
+
+<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+  Статусы за 30 дней
+</h6>
+
+<a class="dropdown-item" href="{% url 'samples:win' %}">win</a>
+<a class="dropdown-item" href="{% url 'samples:declined-properties' %}">отклонен по свойствам</a>
+<a class="dropdown-item" href="{% url 'samples:declined-price' %}">отклонен по цене</a>

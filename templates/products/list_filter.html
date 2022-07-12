@@ -1,0 +1,35 @@
+<div class="collapse container" id="collapseFilter">
+    <div class="card-body mb-2 bg-light">
+        <form method="GET" action="" class="form">
+        <div class="row mb-3">
+            {% if filter_choice.actual != None %}
+                <div class="col-sm-2">
+                    <label for="actual" class="mr-3">актуальный:</label>
+                    <select id="actual" name="actual" class="custom-select">
+                        <option value=""></option>
+                        {% for k, v in dropdown.yes_no.items %}
+                            <option value={{ k }} {% if k == filter_choice.actual %} selected {% endif %}>{{ v }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.sanctioned != None %}
+                <div class="col-sm-2">
+                    <label for="sanctioned" class="mr-3">санкционный:</label>
+                    <select id="sanctioned" name="sanctioned" class="custom-select">
+                        <option value=""></option>
+                        {% for k, v in sanction_status %}
+                            <option value={{ k }} {% if k == filter_choice.sanctioned %} selected {% endif %}>{{ v }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary float-right">фильтр</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

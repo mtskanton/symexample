@@ -1,0 +1,90 @@
+body {
+  font-size: .95rem;
+}
+
+a {
+    color: #17a2b8;
+    text-decoration: none !important;
+}
+
+.form-login {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-login .form-control {
+  position: relative;
+  box-sizing: border-box;
+  /height: auto;
+  padding: 10px;
+  /font-size: 16px;
+}
+.form-login .form-control:focus {
+  z-index: 2;
+}
+.form-login input[type="username"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 48px; /* Height of navbar */
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar a {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar a:hover {
+  color: #17a2b8;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+
+/* Списки вывода */
+dl {
+    margin-top: 4px;
+    margin-bottom: 0px;
+}
+
+dt{
+	font-weight: 500;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	background: #f8f9fa;
+	margin-bottom: 6px;
+}
+
+dt:after {
+	content: ":";
+}
+
+dd{
+	padding-left: 15px;
+	padding-top: 6px;
+}

@@ -1,0 +1,15 @@
+{% extends 'template.html' %}
+
+{% block layout %}
+    <div class="container">
+        {% include "messages.html" %}
+
+        <div class="h4 mt-3 mb-4">
+            {% block page_header %}
+            {% endblock page_header %}
+        </div>
+
+        {% block content %}
+        {% endblock content %}
+    </div>
+{% endblock layout %}

@@ -1,0 +1,65 @@
+{% extends 'layout-fluid.html' %}
+
+{% block sidebar %}
+    {% include "tasks/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block page_header %}
+    {% if task.done %}<i class="bi bi-check2-circle text-success"></i>{% endif %}
+    Задача #{{ task.id }}
+    <a href="{% url 'tasks:update' task.id %}" class="btn btn-info" style="display: block; float: right"><i class="bi bi-pencil-square"></i></a>
+    <a href="{% url 'tasks:delete' task.id %}" class="btn btn-danger mr-1" style="display: block; float: right"><i class="bi bi-x-lg"></i></a>
+{% endblock page_header %}
+
+{% block content %}
+    <div class="ml-3">
+        <dl>
+            <div class="row">
+                <dt class="col-sm-2">описание</dt>
+                <dd class="col-sm-10">{{ task.description }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">результат</dt>
+                <dd class="col-sm-10">{{ task.result|default_if_none:'' }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">дата добавления</dt>
+                <dd class="col-sm-10">{{ task.created|date:"d.m.y" }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">дата напоминания</dt>
+                <dd class="col-sm-10">{{ task.reminder|date:"d.m.y" }}</dd>
+            </div>
+            {% if task.done %}
+                <div class="row">
+                    <dt class="col-sm-2">выполнено</dt>
+                    <dd class="col-sm-10"><i class="bi bi-check2-circle text-success"> {{ task.done_date|date:"d.m.y" }}</i></dd>
+                </div>
+            {% endif %}
+            <div class="row">
+                <dt class="col-sm-2">создатель</dt>
+                <dd class="col-sm-10">{{ task.creator }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">ответственный</dt>
+                <dd class="col-sm-10">{{ task.responsible }}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">компания</dt>
+                <dd class="col-sm-10">{% if task.customer %}<a href="{% url 'customers:view' task.customer.id %}">{{ task.customer }}</a>{% endif %}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">контакт</dt>
+                <dd class="col-sm-10">{% if task.contact %}<a href="{% url 'contacts:view' task.contact.id %}">{{ task.contact }}</a>{% endif %}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">проект</dt>
+                <dd class="col-sm-10">{% if task.project %}<a href="{% url 'projects:view' task.project.id %}">{{ task.project }}</a>{% endif %}</dd>
+            </div>
+            <div class="row">
+                <dt class="col-sm-2">продукт</dt>
+                <dd class="col-sm-10">{% if task.product %}<a href="{% url 'products:view' task.product.id %}">{{ task.product }}</a>{% endif %}</dd>
+            </div>
+        </dl>
+    </div>
+{% endblock %}

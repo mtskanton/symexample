@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block page_header %}
+    {{ page_header }}
+{% endblock page_header %}
+
+{% block content %}
+    <form method="POST" action ="">
+        {% csrf_token %}
+        <div class="content">
+            <div class="row mb-2">
+                <div class="col-6">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.title.id_for_label }}">{{ form.title.label.lower }}</label>{{ form.title }}
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.description.id_for_label }}">{{ form.description.label.lower }}</label>{{ form.description }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.archive.id_for_label }}">{{ form.archive.label.lower }}</label>{{ form.archive }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.customer.id_for_label }}">{{ form.customer.label.lower }}</label>{{ form.customer }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.contact.id_for_label }}">{{ form.contact.label.lower }}</label>{{ form.contact }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-info float-right">сохранить</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+{% endblock content %}

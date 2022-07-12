@@ -1,0 +1,32 @@
+{% if filter_choice %}
+    {% include 'customers/contacts/list_filter.html' %}
+{% endif %}
+
+<table id="contacts_list{{ subform_settings }}" class="hover nowrap row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>имя</th>
+            <th>компания</th>
+            <th>отдел</th>
+            <th>телефон</th>
+            <th>почта</th>
+            <th>актуальный</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for contact in contacts %}
+            <tr>
+                <td><a href="{% url 'contacts:view' contact.id %}"><i class="bi bi-eye"></i></a>&nbsp;
+                    <a href="{% url 'contacts:update' contact.id %}"><i class="bi bi-pencil-square"></i></a>
+                </td>
+                <td>{{ contact }}</td>
+                <td>{% if contact.customer %}<a href="{% url 'customers:view' contact.customer.id %}">{{ contact.customer }}</a>{% endif %}</td>
+                <td>{{ contact.get_department_display|default_if_none:'' }}</td>
+                <td>{{ contact.phone|default_if_none:'' }} {{ contact.phone_2|default_if_none:'' }}</td>
+                <td><a href="mailto:{{ contact.email }}">{{ contact.email|default_if_none:'' }}</a> <a href="mailto:{{ contact.email_2 }}">{{ contact.email_2|default_if_none:'' }}</a></td>
+                <td>{% if contact.actual %}да{% else %}нет{% endif %}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

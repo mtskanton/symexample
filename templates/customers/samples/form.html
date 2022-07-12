@@ -1,0 +1,81 @@
+{% extends 'layout-fluid.html' %}
+
+{% block sidebar %}
+    {% include "customers/samples/sidebar.html" %}
+{% endblock sidebar %}
+
+{% block page_header %}
+    {{ page_header }}
+{% endblock page_header %}
+
+{% block content %}
+    <form method="POST" action ="">
+        {% csrf_token %}
+        <div class="content">
+            <div class="row mb-2">
+                <div class="col-8">
+                    <div class="row mb-2">
+                        <div class="col-10">
+                            <label class="form-label" for="{{ form.product.id_for_label }}">{{ form.product.label.lower }}</label>{{ form.product }}
+                        </div>
+                        <div class="col-2">
+                            <label class="form-label" for="{{ form.amount.id_for_label }}">{{ form.amount.label.lower }}</label>{{ form.amount }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-2">
+                            <label class="form-label" for="{{ form.important.id_for_label }}">{{ form.important.label.lower }}</label>{{ form.important }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.potential.id_for_label }}">{{ form.potential.label.lower }}</label>{{ form.potential }}
+                        </div>
+                        {% if perms.samples.manage_sample %}
+                            <div class="col-6">
+                                <label class="form-label" for="{{ form.pace.id_for_label }}">{{ form.pace.label.lower }}</label>{{ form.pace }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="row mb-2">
+                         <div class="col-2">
+                            <label class="form-label" for="{{ form.direct.id_for_label }}">{{ form.direct.label.lower }}</label>{{ form.direct }}
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label" for="{{ form.sent.id_for_label }}">{{ form.sent.label.lower }}</label>{{ form.sent }}
+                        </div>
+                        <div class="col-6">
+                            <label class="form-label" for="{{ form.sent_data.id_for_label }}">{{ form.sent_data.label.lower }}</label>{{ form.sent_data }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.comment.id_for_label }}">{{ form.comment.label.lower }}</label>{{ form.comment }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 border-left">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.status.id_for_label }}">{{ form.status.label.lower }}</label>{{ form.status }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.customer.id_for_label }}">{{ form.customer.label.lower }}</label>{{ form.customer }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.contact.id_for_label }}">{{ form.contact.label.lower }}</label>{{ form.contact }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <label class="form-label" for="{{ form.project.id_for_label }}">{{ form.project.label.lower }}</label>{{ form.project }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info float-right">сохранить</button>
+    </form>
+{% endblock content %}

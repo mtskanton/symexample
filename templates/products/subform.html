@@ -1,0 +1,32 @@
+{% if filter_choice %}
+    {% include 'products/list_filter.html' %}
+{% endif %}
+
+<table id="products_list" class="hover nowrap row-border" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th>номер</th>
+            <th>название</th>
+            <th>категория</th>
+            <th>INCI</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    {% for product in products %}
+        <tr>
+            <td><a href="{% url 'products:view' product.id %}"><i class="bi bi-eye"></i></a>&nbsp;
+                {% if perms.products.change_product %}
+                    <a href="{% url 'products:update' product.id %}"><i class="bi bi-pencil-square"></i></a>
+                {% endif %}
+            </td>
+            <td>{{ product.number }}</td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.get_category_display }}</td>
+            <td>{{ product.inci|default_if_none:'' }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>

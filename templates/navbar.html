@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'summary' %}">SymCRM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {% if request.user.is_authenticated %}
+        <div class="collapse navbar-collapse flex-grow-0" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto text-right">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'customers:list' %}">Клиенты</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'contacts:list' %}">Контакты</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'tasks:list' %}">Задачи</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'projects:list' %}">Проекты</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="{% url 'samples:list' %}">Образцы</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'products:list' %}">Продукты</a>
+                </li>
+                <li class="nav-item active">
+
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                        {{ request.user }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'logout' %}">Выйти</a>
+                        <!-- <a class="dropdown-item" href="#">[Настройки]</a> -->
+                        {% if request.user.is_superuser %}
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'users:list' %}">Пользователи</a>
+                            <a class="dropdown-item" href="{% url 'admin:index' %}">Админка</a>
+                        {% endif %}
+                    </div>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</nav>

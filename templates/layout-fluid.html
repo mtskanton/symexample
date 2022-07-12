@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+
+{% block layout %}
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-lg-2 d-none d-lg-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    {% block sidebar %}
+                    {% endblock sidebar %}
+                </div>
+            </nav>
+
+            <div class="col-lg-10">
+                {% include "messages.html" %}
+                <div class="h4 mt-3 mb-4">
+                    {% block page_header %}
+                    {% endblock page_header %}
+                </div>
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+{% endblock layout %}

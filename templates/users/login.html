@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="text-center">
+    <form method='post' class="form-login">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Введите свои данные</h1>
+        <label for="{{ form.username.id_for_label }}" class="sr-only">логин</label>
+        {{ form.username }}
+        <label for="{{ form.password.id_for_label }}" class="sr-only">пароль</label>
+        {{ form.password }}
+        <button class="btn btn-info btn-block" type="submit">войти</button>
+        <p class="mt-5 mb-3 text-muted">&copy; SymCRM v.2022</p>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+<div class="collapse container" id="collapseFilter">
+    <div class="card-body mb-2 bg-light">
+        <form method="GET" action="" class="form">
+        <div class="row mb-3">
+            {% if filter_choice.done != None %}
+                <div class="col-sm-2">
+                    <label for="done" class="mr-3">выполнено:</label>
+                    <select id="done" name="done" class="custom-select">
+                        <option value=""></option>
+                        {% for k, v in dropdown.yes_no.items %}
+                            <option value={{ k }} {% if k == filter_choice.done %} selected {% endif %}>{{ v }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            {% endif %}
+            {% if filter_choice.reminder_from != None %}
+                <div class="col-sm-2">
+                    <label for="reminder_from" class="mr-3">напоминание с:</label>
+                    <input id="reminder_from" name="reminder_from" type="date" value="{{ filter_choice.reminder_from }}" class="custom-select"/>
+                </div>
+            {% endif %}
+            {% if filter_choice.reminder_till != None %}
+                <div class="col-sm-2">
+                    <label for="reminder_till" class="mr-3">напоминание до:</label>
+                    <input id="reminder_till" name="remind_till" type="date" value="{{ filter_choice.reminder_till }}" class="custom-select"/>
+                </div>
+            {% endif %}
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-secondary float-right">фильтр</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
