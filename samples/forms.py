@@ -42,7 +42,7 @@ class SampleForm(forms.ModelForm):
             'pace': forms.TextInput(attrs={
                 'class': 'form-control form-control-sm',
             }),
-            'sent': forms.DateInput(attrs={
+            'sent': forms.TextInput(attrs={
                 'class': 'form-control form-control-sm',
                 'type': 'date'
             }),

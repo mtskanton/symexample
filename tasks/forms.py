@@ -17,7 +17,7 @@ class TaskForm(forms.ModelForm):
                 'class': 'form-control form-control-sm',
                 'rows': 4
             }),
-            'reminder': forms.DateInput(attrs={
+            'reminder': forms.TextInput(attrs={
                 'class': 'form-control form-control-sm',
                 'type': 'date'
             }),
